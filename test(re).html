@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!-- 예약 기능~  -->
+	<style type="text/css">
+		.timeBox { 
+		 text-align:center;
+        width:150px;  
+        height:30px; 
+         border: 0;
+ 		border-bottom: 2px 
+ 		solid #000000;
+ 		width: 100px;
+ 		font-size: 30px;
+ 		line-height: 50px;
+ 		height: 50px;
+ 		text-align: center;
+ 		padding: 10px;
+ 		background: transparent;
+		color: #000000;
+		}
+		
+	</style>
+	
+	<script type="text/javascript">
+		function inputTimeColon(time) { 
+			//replace함수를 사용하여 :을 공백으로 치환
+			var replaceTime = time.value.replace(/\:/g, "");
+			//텍스트박스의 입력값이 4~5글자 사이가 되는 경우에만 실행
+			if(replaceTime.length >= 4 && replaceTime.length < 5) {
+				var nowTime = new Date();
+				var hours = replaceTime.substring(0, 2); //시간값 입력
+				var minute = replaceTime.substring(2, 4); // 분값 입력
+				document.
+				//isFinite함수를 사용하여 문자가 선언되었는지 확인
+				if(isFinite(hours + minute) == false) { 
+					alert("시간을 다시 입력해주세요");
+					time.value = "00:00";
+					return false;
+				}				
+				//hours와 minute을 함쳐 입력 시간이 24시가 넘는지 확인
+				if(hours + minute > 2400) { 
+					alert("시간을 다시 입력해주세요");
+					time.value = "24:00";
+					return false;
+				} 
+				if(minute > 60) { 
+					alert("시간을 다시 입력해주세요");
+					time.value = hours + ":00";
+					return false;
+				}
+				time.value = hours + ":" + minute;
+			}  
+		}
+	</script>
+	<style>
+	input[type="time"] { 
+   		text-align:center;
+        width:195px;  
+        height:30px; 
+        border: 0;
+ 		border-bottom: 2px 
+ 		solid #000000;
+ 		font-size: 30px;
+ 		line-height: 50px;
+ 		text-align: center;
+ 		padding: 10px;
+ 		background: transparent;
+		color: #000000;
+	} 
+	</style>
+	
+<!-- ~예약 기능  -->
+<!-- 모바일에 맞는 해상도  -->
+<meta name="viewport" content="user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, width=device-width" />
+<style type="text/css">
+div {
+	text-align: center;
+}
+</style>
+<!-- submit 타입의 버튼 디자인 -->
+<style type="text/css">
+input[type=submit] {
+  background-color: #00000F;
+  border: 0;
+  border-radius: 5px;
+  cursor: pointer;
+  color: #fff;
+  font-size:16px;
+  font-weight: bold;
+  line-height: 1.4;
+  padding: 10px;
+  width: 150px
+}
+</style>
+<!-- 배경 -->
+<style type="text/css">
+body {
+	background-color: #fff;
+background-image:
+linear-gradient(90deg, transparent 79px, #abced4 79px, #abced4 81px, transparent 81px),
+linear-gradient(#eee .1em, transparent .1em);
+background-size: 100% 1.2em;
+}
+</style>
+<meta charset="UTF-8">
+<title>Smart Controller</title>
+<style type="text/css">
+</style>
+</br>
+<!-- 시계  -->
+<script>
+	function printClock() {
+
+		var clock = document.getElementById("clock"); // 출력할 장소 선택
+		var currentDate = new Date(); // 현재시간
+		var calendar = currentDate.getFullYear() + "-"
+				+ (currentDate.getMonth() + 1) + "-" + currentDate.getDate() // 현재 날짜
+		var amPm = 'AM'; // 초기값 AM
+		var currentHours = addZeros(currentDate.getHours(), 2);
+		var currentMinute = addZeros(currentDate.getMinutes(), 2);
+		var currentSeconds = addZeros(currentDate.getSeconds(), 2);
+
+		if (currentHours >= 12) { // 시간이 12보다 클 때 PM으로 세팅, 12를 빼줌
+			amPm = 'PM';
+			currentHours = addZeros(currentHours - 12, 2);
+		}
+
+		if (currentSeconds >= 50) {// 50초 이상일 때 색을 변환해 준다.
+			currentSeconds = '<span style="color:#de1951;">' + currentSeconds
+					+ '</span>'
+		}
+		clock.innerHTML = currentHours + ":" + currentMinute + ":"
+				+ currentSeconds + " <span style='font-size:50px;'>" + amPm
+				+ "</span>"; //날짜를 출력해 줌
+
+		setTimeout("printClock()", 1000); // 1초마다 printClock() 함수 호출
+	}
+
+	function addZeros(num, digit) { // 자릿수 맞춰주기
+		var zero = '';
+		num = num.toString();
+		if (num.length < digit) {
+			for (i = 0; i < digit - num.length; i++) {
+				zero += '0';
+			}
+		}
+		return zero + num;
+	}
+</script>
+<style type="text/css">
+#container {
+	
+}
+</style>
+</head>
+<body>
+	
+	   <center>
+		<h1>SMART CONTROLLER</h1>
+		<!-- 날씨 -->
+		<body onload="printClock()">
+			<div
+				style="border: 1px solid #dedede; width: 300px; height: 100px; line-height: 100px; color: #666; font-size: 50px; text-align: center;"
+				id="clock"text-align:center;></div>
+			<table cellpadding=0 cellspacing=0 width=300
+				style="border: solid 1px #000000; font-family: Tahoma; font-size: 12px; background-color: #ffffff">
+				<tr>
+					<td><table width=100% cellpadding=0 cellspacing=0>
+							<tr>
+								<td width=8 height=30
+									background="https://rp5.ua/informer/htmlinfa/topshl.png"
+									bgcolor=#000000></td>
+								<td width=* align=center
+									background="https://rp5.ua/informer/htmlinfa/topsh.png"
+									bgcolor=#000000><a
+									style="color: #ffffff; font-family: Tahoma; font-size: 12px;"
+									href="https://rp5.ua/5483/ko"><b>대한민국</b></a></td>
+								<td width=8 height=30
+									background="https://rp5.ua/informer/htmlinfa/topshr.png"
+									bgcolor=#000000> </td>
+							</tr>
+						</table></td>
+				</tr>
+				<tr>
+					<td valign=top style="padding: 0;"><iframe
+							src="https://rp5.ua/htmla.php?id=5483&lang=ko&um=00000&bg=%23ffffff&ft=%23ffffff&fc=%23000000&c=%23000000&f=Tahoma&s=12&sc=4"
+							width=100% height=252 frameborder=0 scrolling=no
+							style="margin: 0;"></iframe></td>
+				</tr>
+			</table>
+			<!-- https://rp5.ua/docs/htmlinfa/ko?id=292158 -->
+
+			<form action="" method="post">{% csrf_token %}
+				<table>
+					<tr>
+						<td> <input type="submit"
+							name="up" value="UP" /> <input type="submit" name="down"
+							value="DOWN" /> <br></td>
+					</tr>
+					<tr>
+                        <table align="center">
+						<td> <input type="submit"
+							name="stop" value="STOP" /> <br></td>
+					<tr>
+						 <td><input type="submit"
+							name="off" value="OFF" /></td>
+					</tr>
+                        </table>
+					</tr>
+				</table>
+
+	<!-- 예약가능~ -->
+
+	<h3 class ="res"><b>N(%)만큼 이동합니다.</b></h3>	
+	<input type="text" name = "time" class = "timeBox" id = "inputRes" onkeyup = "inputTimeColon(this);" placeholder="N(%)" maxlength="6">
+	<br>
+	<!--
+	<small>예약가능시간 : 30% / 50% / 70% / 100% </small>
+	-->
+	<br>
+	<input type="submit" name = "upRes" id = "upRes" value = "*UP">
+	<input type="submit" name = "downRes" id = "downRes" value = "*DOWN">
+	</form>
+	<!-- ~예약가능 -->   
+</center>
+</body>
+
+</html>
